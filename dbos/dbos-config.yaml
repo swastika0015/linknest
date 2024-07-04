@@ -17,5 +17,5 @@ http:
   cors_middleware: true
   credentials: true
   allowed_origins:
-    - 'https://linknest-kdr4.vercel.app/'
+    - 'https://linknest-kdr4.vercel.app'
   

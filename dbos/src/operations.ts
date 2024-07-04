@@ -38,11 +38,9 @@ export class Hello {
     const insertQuery = `
       INSERT INTO user_data (name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-      RETURNING *
     `;
-    const { rows } = await ctxt.client.raw(insertQuery, [name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link]);
-    // Return inserted data as JSON
-    return rows[0];
+    await ctxt.client.raw(insertQuery, [name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link]);
+
   }
 
   @GetApi('/dbos/:user')
