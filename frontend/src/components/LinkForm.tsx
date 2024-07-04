@@ -41,7 +41,7 @@ const LinkForm: React.FC<LinkFormProps> = ({ addLink, addSocialLink }) => {
         medium_link: medium,
       }};
 
-    const response = await axios.post('https://swastika-dbos.cloud.dbos.dev/', body);
+    const response = await axios.post('http://localhost:3000/dbos/:user', body);
     console.log(response.data);
 
     setTwitter('');

@@ -1,3 +1,5 @@
+// @ts-ignor
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LinkForm from "../components/LinkForm";
@@ -20,16 +22,6 @@ const Home: React.FC = () => {
     return savedLinks ? JSON.parse(savedLinks) : [];
   });
 
-  const [socialLinks, setSocialLinks] = useState<SocialLinks>(() => {
-    const savedSocialLinks = localStorage.getItem('socialLinks');
-    return savedSocialLinks ? JSON.parse(savedSocialLinks) : {
-      twitter: '',
-      linkedin: '',
-      github: '',
-      medium: ''
-    };
-  });
-
   const navigate = useNavigate();
 
   const addLink = (link: Link) => {
@@ -40,7 +32,6 @@ const Home: React.FC = () => {
   };
 
   const addSocialLink = (newSocialLinks: SocialLinks) => {
-    setSocialLinks(newSocialLinks);
     localStorage.setItem('socialLinks', JSON.stringify(newSocialLinks));
     navigate('/links');
   };
@@ -52,5 +43,7 @@ const Home: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default Home;
