@@ -1,53 +1,37 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-interface LinkFormProps {
-  addLink: (link: { title: string; url: string }) => void;
-  addSocialLink: (socialLinks: SocialLinks) => void;
-}
+import { useNavigate } from 'react-router-dom';
 
-interface SocialLinks {
-  twitter: string;
-  linkedin: string;
-  github: string;
-  medium: string;
-}
-
-const LinkForm: React.FC<LinkFormProps> = ({ addLink, addSocialLink }) => {
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
+const LinkForm: React.FC = () => {
+  const [name, setName] = useState('');
+  const [customTitle, setTitle] = useState('');
+  const [customUrl, setUrl] = useState('');
   const [twitter, setTwitter] = useState('');
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
   const [medium, setMedium] = useState('');
 
-  const handleLinkSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    addLink({ title, url });
-    setTitle('');
-    setUrl('');
-  };
+  const navigate = useNavigate();
+
 
   const handleSocialSubmit =  async(e: React.FormEvent) => {
     e.preventDefault();
-    addSocialLink({ twitter, linkedin, github, medium });
     try {
     const body = {
       body:{
-        name: title,
-        custom_link: url,
+        name: name,
+        custom_title: customTitle,
+        custom_link: customUrl,
         twitter_link: twitter,
         linkedln_link: linkedin,
         github_link: github,
         medium_link: medium,
       }};
 
-    const response = await axios.post('https://swastika-dbos.cloud.dbos.dev/', body);
-    console.log(response.data);
+     const response= await axios.post('https://swastika-dbos.cloud.dbos.dev/dbos/save', body);
+     console.log(response.data)
+     navigate(`${name}`);
 
-    setTwitter('');
-    setLinkedin('');
-    setGithub('');
-    setMedium('');
     } catch (error) {
     console.error(error);
   }
@@ -55,13 +39,24 @@ const LinkForm: React.FC<LinkFormProps> = ({ addLink, addSocialLink }) => {
 
   return (
     <div className="mb-6 w-full max-w-sm">
-      <form onSubmit={handleLinkSubmit} className="mb-6">
+      <form onSubmit={handleSocialSubmit}>
+      <h2 className="text-xl font-bold mb-4">Name</h2>
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg"
+            required
+          />
+        </div>
         <h2 className="text-xl font-bold mb-4">Add Custom Link</h2>
         <div className="mb-4">
           <input
             type="text"
             placeholder="Title"
-            value={title}
+            value={customTitle}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
             required
@@ -71,21 +66,12 @@ const LinkForm: React.FC<LinkFormProps> = ({ addLink, addSocialLink }) => {
           <input
             type="url"
             placeholder="URL"
-            value={url}
+            value={customUrl}
             onChange={(e) => setUrl(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
             required
           />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
-        >
-          Add Link
-        </button>
-      </form>
-
-      <form onSubmit={handleSocialSubmit}>
+          </div>
         <h2 className="text-xl font-bold mb-4">Add Social Media Links</h2>
         <div className="mb-4">
           <input

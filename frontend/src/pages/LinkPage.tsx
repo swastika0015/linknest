@@ -1,9 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { Link, useParams  } from 'react-router-dom';
+import axios from 'axios';
 
 interface Link {
   title: string;
   url: string;
+  twitter: string;
+  linkedin: string;
+  github: string;
+  medium: string;
 }
 
 interface SocialLinks {
@@ -13,15 +18,44 @@ interface SocialLinks {
   medium: string;
 }
 
-const links: Link[] = JSON.parse(localStorage.getItem('links') || '[]');
-const socialLinks: SocialLinks = JSON.parse(localStorage.getItem('socialLinks') || '{}');
 
 const LinkPage: React.FC = () => {
+  const [links, setLinks] = useState<Link[]>([]);
+  const { user } = useParams<{ user: string }>();
+  const [socialLinks, setSocialLinks] = useState<SocialLinks>({
+    twitter: '',
+    linkedin: '',
+    github: '',
+    medium: ''
+  });
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const response = await axios.get(`https://swastika-dbos.cloud.dbos.dev/dbos/${user}`);
+        console.log(response.data)
+        const data = response.data;
+        
+        setLinks(data.links);
+        setSocialLinks({
+          twitter: data.twitter_link,
+          linkedin: data.linkedln_link,
+          github: data.github_link,
+          medium: data.medium_link
+
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchLinks();
+  }, [user]);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-6">Your Linknest</h1>
       <div className="w-full max-w-sm">
-        {links.map((link, index) => (
+        {links?.map((link, index) => (
           <a
             key={index}
             href={link.url}

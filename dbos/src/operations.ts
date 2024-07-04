@@ -4,8 +4,9 @@ import { Knex } from 'knex';
 // The schema of the database table used in this example.
 
 
-export interface dbos_user_new {
+export interface user_data {
   name: string;
+  custom_title: string
   custom_link: string;
   twitter_link: string;
   linkedln_link: string;
@@ -15,14 +16,15 @@ export interface dbos_user_new {
 
 
 export class Hello {
-  @PostApi('/dbos/:user')
+  @PostApi('/dbos/save')
   @Transaction()
-  static async saveLinks(ctxt: TransactionContext<Knex>, @ArgSource(ArgSources.BODY) body: dbos_user_new) {
-    const { name, custom_link, twitter_link, linkedln_link, github_link, medium_link} = body;
+  static async saveLinks(ctxt: TransactionContext<Knex>, @ArgSource(ArgSources.BODY) body: user_data) {
+    const { name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link} = body;
     // Create table if not exists
     const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS dbos_user_data (
+      CREATE TABLE IF NOT EXISTS user_data (
         name TEXT,
+        custom_title TEXT,
         custom_link TEXT,
         twitter_link TEXT,
         linkedln_link TEXT,
@@ -34,11 +36,24 @@ export class Hello {
 
     // Insert data
     const insertQuery = `
-      INSERT INTO dbos_user_data (name, custom_link, twitter_link, linkedln_link, github_link, medium_link)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO user_data (name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
       RETURNING *
     `;
-    const { rows } = await ctxt.client.raw(insertQuery, [name, custom_link, twitter_link, linkedln_link, github_link, medium_link]);
+    const { rows } = await ctxt.client.raw(insertQuery, [name, custom_title, custom_link, twitter_link, linkedln_link, github_link, medium_link]);
+    // Return inserted data as JSON
+    return rows[0];
+  }
+
+  @GetApi('/dbos/:user')
+  @Transaction()
+  static async getLinks(ctxt: TransactionContext<Knex>, @ArgSource(ArgSources.URL) user: string) {
+    // Insert data
+    const getQuery = `
+      SELECT * from user_data where name= ?
+    `;
+    const { rows } = await ctxt.client.raw(getQuery, [user]);
+    console.log(rows)
 
     // Return inserted data as JSON
     return rows[0];
