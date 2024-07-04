@@ -13,3 +13,9 @@ database:
 runtimeConfig:
   entrypoints:
     - dist/operations.js
+http:
+  cors_middleware: true
+  credentials: true
+  allowed_origins:
+    - http://localhost:5173
+  

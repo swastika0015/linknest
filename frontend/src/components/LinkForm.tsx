@@ -32,15 +32,16 @@ const LinkForm: React.FC<LinkFormProps> = ({ addLink, addSocialLink }) => {
     addSocialLink({ twitter, linkedin, github, medium });
     try {
     const body = {
+      body:{
         name: title,
         custom_link: url,
         twitter_link: twitter,
         linkedln_link: linkedin,
         github_link: github,
         medium_link: medium,
-      };
+      }};
 
-    const response = await axios.post('/dbos/saveLinks', body);
+    const response = await axios.post('https://swastika-dbos.cloud.dbos.dev/', body);
     console.log(response.data);
 
     setTwitter('');
