@@ -48,7 +48,6 @@ const LinkForm: React.FC = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <h2 className="text-xl font-bold mb-4">Add Custom Link</h2>
@@ -59,7 +58,6 @@ const LinkForm: React.FC = () => {
             value={customTitle}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <div className="mb-4">
@@ -69,7 +67,6 @@ const LinkForm: React.FC = () => {
             value={customUrl}
             onChange={(e) => setUrl(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
           </div>
         <h2 className="text-xl font-bold mb-4">Add Social Media Links</h2>
@@ -80,7 +77,6 @@ const LinkForm: React.FC = () => {
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <div className="mb-4">
@@ -90,7 +86,6 @@ const LinkForm: React.FC = () => {
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <div className="mb-4">
@@ -100,7 +95,6 @@ const LinkForm: React.FC = () => {
             value={github}
             onChange={(e) => setGithub(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <div className="mb-4">
@@ -110,7 +104,6 @@ const LinkForm: React.FC = () => {
             value={medium}
             onChange={(e) => setMedium(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg"
-            required
           />
         </div>
         <button
