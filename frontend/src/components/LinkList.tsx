@@ -7,7 +7,7 @@ interface Link {
 
 interface SocialLinks {
   customLink: string;
-  customTitle: string
+  customTitle: string;
   twitter: string;
   linkedin: string;
   github: string;
@@ -28,13 +28,13 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="block mb-4 p-4 bg-white border rounded-lg hover:bg-gray-100"
+          className="block mb-4 p-4 bg-white border rounded-lg hover:bg-gray-100 text-blue-900"
         >
           {link.title}
         </a>
       ))}
       <div className="mt-6">
-      {socialLinks.customLink && (
+        {socialLinks.customLink && (
           <a
             href={socialLinks.customLink}
             target="_blank"
@@ -49,7 +49,7 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
             href={socialLinks.twitter}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mb-4 p-4 bg-blue-400 text-white border rounded-lg hover:bg-blue-500"
+            className="block mb-4 p-4 bg-blue-600 text-white border rounded-lg hover:bg-blue-700"
           >
             Twitter
           </a>
@@ -59,7 +59,7 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
             href={socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mb-4 p-4 bg-blue-600 text-white border rounded-lg hover:bg-blue-700"
+            className="block mb-4 p-4 bg-blue-700 text-white border rounded-lg hover:bg-blue-800"
           >
             LinkedIn
           </a>
@@ -69,7 +69,7 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
             href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mb-4 p-4 bg-gray-800 text-white border rounded-lg hover:bg-gray-900"
+            className="block mb-4 p-4 bg-gray-900 text-white border rounded-lg hover:bg-gray-800"
           >
             GitHub
           </a>
@@ -79,7 +79,7 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
             href={socialLinks.medium}
             target="_blank"
             rel="noopener noreferrer"
-            className="block mb-4 p-4 bg-black text-white border rounded-lg hover:bg-gray-900"
+            className="block mb-4 p-4 bg-gray-800 text-white border rounded-lg hover:bg-gray-700"
           >
             Medium
           </a>

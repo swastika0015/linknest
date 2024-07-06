@@ -38,45 +38,47 @@ const LinkForm: React.FC = () => {
   };
 
   return (
-    <div className="mb-6 w-full max-w-sm">
+    <div className="mb-6 w-full max-w-sm text-indigo-600">
       <form onSubmit={handleSocialSubmit}>
-      <h2 className="text-xl font-bold mb-4">Name</h2>
-        <div className="mb-4">
+      <h3 className="text-l font-bold mb-1">Name</h3>
+        <div className="mb-5">
           <input
             type="text"
             placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
+            required
           />
         </div>
-        <h2 className="text-xl font-bold mb-4">Add Custom Link</h2>
-        <div className="mb-4">
+
+        <div className="mb-5">
+        <h3 className="text-l font-bold mb-1">Add Custom Link</h3>
           <input
             type="text"
             placeholder="Title"
             value={customTitle}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-5">
           <input
             type="url"
             placeholder="URL"
             value={customUrl}
             onChange={(e) => setUrl(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
           </div>
-        <h2 className="text-xl font-bold mb-4">Add Social Media Links</h2>
+        <h3 className="text-l font-bold mb-1">Add Social Media Links</h3>
         <div className="mb-4">
           <input
             type="url"
             placeholder="Twitter URL"
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
         <div className="mb-4">
@@ -85,7 +87,7 @@ const LinkForm: React.FC = () => {
             placeholder="LinkedIn URL"
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
         <div className="mb-4">
@@ -94,7 +96,8 @@ const LinkForm: React.FC = () => {
             placeholder="GitHub URL"
             value={github}
             onChange={(e) => setGithub(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200
+   "
           />
         </div>
         <div className="mb-4">
@@ -103,12 +106,14 @@ const LinkForm: React.FC = () => {
             placeholder="Medium URL"
             value={medium}
             onChange={(e) => setMedium(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200
+  "
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+          className="w-full text-white py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
+   hover:from-purple-500 hover:to-indigo-500 transition duration-500"
         >
           Add Social Links
         </button>
