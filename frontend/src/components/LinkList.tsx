@@ -6,6 +6,8 @@ interface Link {
 }
 
 interface SocialLinks {
+  customLink: string;
+  customTitle: string
   twitter: string;
   linkedin: string;
   github: string;
@@ -32,6 +34,16 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
         </a>
       ))}
       <div className="mt-6">
+      {socialLinks.customLink && (
+          <a
+            href={socialLinks.customLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mb-4 p-4 bg-blue-400 text-white border rounded-lg hover:bg-blue-500"
+          >
+            {socialLinks.customTitle}
+          </a>
+        )}
         {socialLinks.twitter && (
           <a
             href={socialLinks.twitter}

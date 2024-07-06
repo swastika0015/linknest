@@ -12,6 +12,8 @@ interface Link {
 }
 
 interface SocialLinks {
+  customLink: string;
+  customTitle: string;
   twitter: string;
   linkedin: string;
   github: string;
@@ -23,6 +25,8 @@ const LinkPage: React.FC = () => {
   const [links, setLinks] = useState<Link[]>([]);
   const { user } = useParams<{ user: string }>();
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({
+    customLink: '',
+    customTitle: '',
     twitter: '',
     linkedin: '',
     github: '',
@@ -37,6 +41,8 @@ const LinkPage: React.FC = () => {
         
         setLinks(data.links);
         setSocialLinks({
+          customLink: data.custom_link,
+          customTitle: data.customTitle,
           twitter: data.twitter_link,
           linkedin: data.linkedln_link,
           github: data.github_link,
@@ -67,6 +73,16 @@ const LinkPage: React.FC = () => {
           </a>
         ))}
         <div className="mt-6">
+        {socialLinks.customLink && (
+            <a
+              href={socialLinks.customLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mb-4 p-4 bg-blue-400 text-white border rounded-lg hover:bg-blue-500"
+            >
+              {socialLinks.customTitle}
+            </a>
+          )}
           {socialLinks.twitter && (
             <a
               href={socialLinks.twitter}

@@ -18,4 +18,4 @@ http:
   credentials: true
   allowed_origins:
     - 'https://linknest-kdr4.vercel.app'
-  
+    - 'http://localhost:5173'
