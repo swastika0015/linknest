@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LinkForm: React.FC = () => {
   const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
   const [customTitle, setTitle] = useState('');
   const [customUrl, setUrl] = useState('');
   const [twitter, setTwitter] = useState('');
@@ -20,6 +21,7 @@ const LinkForm: React.FC = () => {
     const body = {
       body:{
         name: name,
+        bio: bio,
         custom_title: customTitle,
         custom_link: customUrl,
         twitter_link: twitter,
@@ -52,6 +54,17 @@ const LinkForm: React.FC = () => {
           />
         </div>
 
+        <h3 className="text-l font-bold mb-1">Bio</h3>
+        <div className="mb-5">
+          <input
+            type="text"
+            placeholder="Your Bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
+          />
+        </div>
+
         <div className="mb-5">
         <h3 className="text-l font-bold mb-1">Add Custom Link</h3>
           <input
@@ -79,6 +92,7 @@ const LinkForm: React.FC = () => {
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
+            required
           />
         </div>
         <div className="mb-4">
@@ -96,8 +110,7 @@ const LinkForm: React.FC = () => {
             placeholder="GitHub URL"
             value={github}
             onChange={(e) => setGithub(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200
-   "
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
         <div className="mb-4">
@@ -106,14 +119,12 @@ const LinkForm: React.FC = () => {
             placeholder="Medium URL"
             value={medium}
             onChange={(e) => setMedium(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200
-  "
+            className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
         <button
           type="submit"
-          className="w-full text-white py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
-   hover:from-purple-500 hover:to-indigo-500 transition duration-500"
+          className="w-full text-white py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500 transition duration-500"
         >
           Add Social Links
         </button>

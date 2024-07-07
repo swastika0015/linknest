@@ -4,6 +4,7 @@ import axios from 'axios';
 
 interface SocialLinks {
   name: string;
+  bio: string;
   customLink: string;
   customTitle: string;
   twitter: string;
@@ -16,6 +17,7 @@ const LinkPage: React.FC = () => {
   const { user } = useParams<{ user: string }>();
   const [socialLinks, setSocialLinks] = useState<SocialLinks>({
     name: '',
+    bio: '',
     customLink: '',
     customTitle: '',
     twitter: '',
@@ -32,6 +34,7 @@ const LinkPage: React.FC = () => {
     
         setSocialLinks({
           name: data.name,
+          bio: data.bio,
           customLink: data.custom_link,
           customTitle: data.custom_title,
           twitter: data.twitter_link,
@@ -48,8 +51,9 @@ const LinkPage: React.FC = () => {
   }, [user]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 text-indigo-700">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 to-purple-100 p-4 text-indigo-700">
       <h1 className="text-3xl font-bold mb-6">{socialLinks.name}'s LinkNest</h1>
+      <h4 className="text-l mb-6">{socialLinks.bio} my bio</h4>
       <div className="w-full max-w-sm text-center">
         <div className="mt-6">
           {socialLinks.customLink && (
@@ -110,7 +114,7 @@ const LinkPage: React.FC = () => {
         </div>
       </div>
       <Link to="/" className="mt-8 bg-indigo-100 py-2 px-4 border rounded-lg text-indigo-800 border-solid hover:bg-indigo-200">
-        Go to your Linknest
+        Go to Linknest
       </Link>
     </div>
   );
