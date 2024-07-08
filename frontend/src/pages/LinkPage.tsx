@@ -56,7 +56,7 @@ const LinkPage: React.FC = () => {
       <h1 className="text-4xl uppercase font-bold ">{socialLinks.name}</h1>
       <div className="w-full max-w-sm text-center">
         <div className="m-2">
-        <p className="text-l mb-6 p-2">{socialLinks.bio} my bio</p>
+        <p className="text-l mb-6 p-2">{socialLinks.bio}</p>
           
           {socialLinks.twitter && (
             <a
