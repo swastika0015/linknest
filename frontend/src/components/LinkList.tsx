@@ -11,7 +11,7 @@ interface SocialLinks {
   twitter: string;
   linkedin: string;
   github: string;
-  medium: string;
+  portfolio: string;
 }
 
 interface LinkListProps {
@@ -74,14 +74,14 @@ const LinkList: React.FC<LinkListProps> = ({ links, socialLinks }) => {
             GitHub
           </a>
         )}
-        {socialLinks.medium && (
+        {socialLinks.portfolio && (
           <a
-            href={socialLinks.medium}
+            href={socialLinks.portfolio}
             target="_blank"
             rel="noopener noreferrer"
             className="block mb-4 p-4 bg-gray-800 text-white border rounded-lg hover:bg-gray-700"
           >
-            Medium
+            Portfolio
           </a>
         )}
       </div>

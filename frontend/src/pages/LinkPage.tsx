@@ -10,7 +10,7 @@ interface SocialLinks {
   twitter: string;
   linkedin: string;
   github: string;
-  medium: string;
+  portfolio: string;
 }
 
 const LinkPage: React.FC = () => {
@@ -23,7 +23,7 @@ const LinkPage: React.FC = () => {
     twitter: '',
     linkedin: '',
     github: '',
-    medium: ''
+    portfolio: ''
   });
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const LinkPage: React.FC = () => {
           twitter: data.twitter_link,
           linkedin: data.linkedln_link,
           github: data.github_link,
-          medium: data.medium_link
+          portfolio: data.portfolio_link
         });
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -52,21 +52,11 @@ const LinkPage: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-200 to-purple-100 p-4 text-indigo-700">
-      <h1 className="text-3xl font-bold mb-6">{socialLinks.name}'s LinkNest</h1>
-      <h4 className="text-l mb-6">{socialLinks.bio} my bio</h4>
+      <h1 className="text-4xl uppercase font-bold ">{socialLinks.name}</h1>
       <div className="w-full max-w-sm text-center">
-        <div className="mt-6">
-          {socialLinks.customLink && (
-            <a
-              href={socialLinks.customLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mb-4 p-4  text-white border rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
-   hover:from-purple-500 hover:to-indigo-500 transition duration-500"
-            >
-              {socialLinks.customTitle}
-            </a>
-          )}
+        <div className="m-2">
+        <p className="text-l mb-6 p-2">{socialLinks.bio} my bio</p>
+          
           {socialLinks.twitter && (
             <a
               href={socialLinks.twitter}
@@ -100,15 +90,26 @@ const LinkPage: React.FC = () => {
               GitHub
             </a>
           )}
-          {socialLinks.medium && (
+          {socialLinks.customLink && (
             <a
-              href={socialLinks.medium}
+              href={socialLinks.customLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mb-4 p-4  text-white border rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
+   hover:from-purple-500 hover:to-indigo-500 transition duration-500"
+            >
+              {socialLinks.customTitle}
+            </a>
+          )}
+          {socialLinks.portfolio && (
+            <a
+              href={socialLinks.portfolio}
               target="_blank"
               rel="noopener noreferrer"
               className="block mb-4 p-4 text-white border rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
    hover:from-purple-500 hover:to-indigo-500 transition duration-500"
             >
-              Medium
+              Portfolio
             </a>
           )}
         </div>
