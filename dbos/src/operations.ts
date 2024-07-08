@@ -1,7 +1,7 @@
 import { TransactionContext, WorkflowContext, Transaction, GetApi, ArgSource, ArgSources, PostApi, Workflow } from '@dbos-inc/dbos-sdk';
 import { Knex } from 'knex';
 
-export interface user_info {
+export interface user_data_info {
   name: string;
   bio?: string;
   custom_title?: string;
@@ -15,7 +15,7 @@ export interface user_info {
 export class Links {
   @PostApi('/dbos/save')
   @Transaction()
-  static async saveLinks(ctxt: TransactionContext<Knex>, @ArgSource(ArgSources.BODY) body: user_info) {
+  static async saveLinks(ctxt: TransactionContext<Knex>, @ArgSource(ArgSources.BODY) body: user_data_info) {
     const {
       name = '',
       bio = '',
@@ -28,7 +28,7 @@ export class Links {
     } = body;
 
     const createTableQuery = `
-      CREATE TABLE IF NOT EXISTS user_info (
+      CREATE TABLE IF NOT EXISTS user_data_info (
         name TEXT,
         bio TEXT,
         custom_title TEXT,
@@ -43,7 +43,7 @@ export class Links {
 
     // Insert data
     const insertQuery = `
-      INSERT INTO user_info (name, bio, custom_title, custom_link, twitter_link, linkedln_link, github_link, portfolio_link)
+      INSERT INTO user_data_info (name, bio, custom_title, custom_link, twitter_link, linkedln_link, github_link, portfolio_link)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
     await ctxt.client.raw(insertQuery, [name, bio, custom_title, custom_link, twitter_link, linkedln_link, github_link, portfolio_link]);
@@ -52,11 +52,9 @@ export class Links {
   @Transaction()
   static async getLinks(ctxt: TransactionContext<Knex>, user: string) {
     const getQuery = `
-      SELECT * FROM user_info WHERE name = ?
+      SELECT * FROM user_data_info WHERE name = ?
     `;
     const { rows } = await ctxt.client.raw(getQuery, [user]);
-
-    // Return retrieved data as JSON
     return rows[0];
   }
 

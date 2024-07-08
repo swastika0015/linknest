@@ -31,6 +31,7 @@ const LinkPage: React.FC = () => {
       try {
         const response = await axios.get(`https://swastika-dbos.cloud.dbos.dev/dbos/${user}`);
         const data = response.data;
+        console.log(data)
     
         setSocialLinks({
           name: data.name,
@@ -90,17 +91,7 @@ const LinkPage: React.FC = () => {
               GitHub
             </a>
           )}
-          {socialLinks.customLink && (
-            <a
-              href={socialLinks.customLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mb-4 p-4  text-white border rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500
-   hover:from-purple-500 hover:to-indigo-500 transition duration-500"
-            >
-              {socialLinks.customTitle}
-            </a>
-          )}
+
           {socialLinks.portfolio && (
             <a
               href={socialLinks.portfolio}
@@ -112,6 +103,17 @@ const LinkPage: React.FC = () => {
               Portfolio
             </a>
           )}
+          {socialLinks.customLink && (
+            <a
+              href={socialLinks.customLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mb-4 p-4  text-white border rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500 transition duration-500"
+            >
+            {socialLinks.customTitle}
+            </a>
+          )}
+        
         </div>
       </div>
       <Link to="/" className="mt-8 bg-indigo-100 py-2 px-4 border rounded-lg text-indigo-800 border-solid hover:bg-indigo-200">

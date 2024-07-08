@@ -10,7 +10,7 @@ const LinkForm: React.FC = () => {
   const [twitter, setTwitter] = useState('');
   const [linkedin, setLinkedin] = useState('');
   const [github, setGithub] = useState('');
-  const [medium, setMedium] = useState('');
+  const [portfolio, setPortfolio] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const LinkForm: React.FC = () => {
         twitter_link: twitter,
         linkedln_link: linkedin,
         github_link: github,
-        medium_link: medium,
+        portfolio_link: portfolio,
       }};
 
      await axios.post('https://swastika-dbos.cloud.dbos.dev/dbos/save', body);
@@ -73,6 +73,7 @@ const LinkForm: React.FC = () => {
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
+            required
           />
         </div>
         <div className="mb-4">
@@ -97,8 +98,8 @@ const LinkForm: React.FC = () => {
           <input
             type="url"
             placeholder="Portfolio"
-            value={medium}
-            onChange={(e) => setMedium(e.target.value)}
+            value={portfolio}
+            onChange={(e) => setPortfolio(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
         </div>
@@ -121,7 +122,7 @@ const LinkForm: React.FC = () => {
             className="w-full px-4 py-2 border rounded-lg placeholder-indigo-200"
           />
           </div>
-          
+
         <button
           type="submit"
           className="w-full text-white py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500 transition duration-500"
