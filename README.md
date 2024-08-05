@@ -35,7 +35,7 @@ LinkNest allows users to create a customizable page that houses multiple links t
 1. Clone the repository:
    ```
    git clone https://github.com/yourusername/linknest.git
-   cd linknest
+   cd linknest/frontend
    ```
 
 2. Install dependencies:
@@ -55,18 +55,18 @@ LinkNest allows users to create a customizable page that houses multiple links t
    ```
 
 5. To run the backend, run the following command:
-  ```
-  cd backend
-  npx dbos-cloud login
-  ```
+   ```
+    cd linknest/backend
+    npx dbos-cloud login
+    ```
 6. Choose a database instance name, username and password
-```
-npx dbos-cloud db provision <database-instance-name> -U <database-username>
-```
+    ```
+    npx dbos-cloud db provision <database-instance-name> -U <database-username>
+    ```
 7. Deploy the backend
-```
-npx dbos-cloud deploy
-```
+    ```
+    npx dbos-cloud deploy
+    ```
 
 ## Usage
 
